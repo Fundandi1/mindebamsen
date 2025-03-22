@@ -1,103 +1,583 @@
-import Image from "next/image";
+// frontend/src/pages/index.tsx
+"use client";
+"use strict";
+
+import { Playfair_Display, Lato } from 'next/font/google';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Dialog } from '@headlessui/react';
+import Navbar from '../../components/navbar';
+import Footer from '../../components/footer';
+
+// Initialize fonts
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
+});
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  variable: '--font-lato',
+});
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  
+  // Testimonial data
+  const testimonials = [
+    { 
+      name: "Michael R.", 
+      location: "Boston, MA",
+      quote: "After my wife passed, I had her favorite cardigan made into a MemoryBear for our daughter. It's become her most treasured possession and helps keep her mother's memory alive in the most beautiful way.",
+      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+      rating: 5
+    },
+    { 
+      name: "Alicia T.", 
+      location: "Portland, OR",
+      quote: "I sent in my son's baby clothes that I couldn't bear to part with. Now instead of sitting in a box, they're a beautiful keepsake he can actually enjoy. The craftsmanship is exceptional and truly honors the memories.",
+      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+      rating: 5
+    },
+    { 
+      name: "David K.", 
+      location: "Minneapolis, MN",
+      quote: "Our daughter is away at college and was feeling homesick. We surprised her with a MemoryBear made from her childhood blanket and her dad's old t-shirts. She said it feels like getting a hug from home every day.",
+      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+      rating: 5
+    }
+  ];
+  
+  // Auto-rotate testimonials
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTestimonialIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 6000);
+    
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+  
+  // Video modal component
+  const VideoModal = () => {
+    return (
+      <Dialog
+        open={isVideoPlaying}
+        onClose={() => setIsVideoPlaying(false)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/70" aria-hidden="true" />
+        
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-4xl bg-white rounded-lg shadow-xl overflow-hidden">
+            <div className="relative pt-[56.25%]">
+              <iframe 
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/example-memory-bear-video?autoplay=1" 
+                title="MemoryBear Story" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+            
+            <div className="p-4 flex justify-end">
+              <button
+                onClick={() => setIsVideoPlaying(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition"
+              >
+                Close
+              </button>
+            </div>
+          </Dialog.Panel>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </Dialog>
+    );
+  };
+  
+  return (
+    <><><Navbar /><main className={`${playfair.variable} ${lato.variable} font-sans min-h-screen`}>
+      {isVideoPlaying && <VideoModal />}
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-neutral-50 to-rose-50">
+          {/* Subtle background elements */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-rose-100 rounded-full opacity-10 blur-3xl"></div>
+          <div className="absolute top-1/4 -left-24 w-80 h-80 bg-blue-100 rounded-full opacity-10 blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-100 rounded-full opacity-10 blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10 py-20">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="flex flex-col space-y-8">
+              <span className="text-rose-600 font-light tracking-wider text-sm uppercase font-sans">Handcrafted with love</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-gray-800 leading-tight">
+                <span className="text-rose-600 italic">Minder</span> Du Kan <span className="block">Holde For Evigt</span>
+              </h1>
+              <p className="text-lg text-gray-600 font-light font-sans leading-relaxed">
+                Transform cherished clothing into a custom teddy bear that keeps your loved ones close. Each MemoryBear is handcrafted with care, using pieces of meaningful fabric to create a keepsake that provides comfort when you need it most.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link
+                  href="/customize"
+                  className="px-8 py-4 bg-red-800 text-white font-sans font-normal rounded-md hover:bg-rose-700 transition duration-300 ease-in-out text-center shadow-md hover:shadow-lg"
+                >
+                  Create Your MemoryBear
+                </Link>
+                <button
+                  onClick={() => setIsVideoPlaying(true)}
+                  className="px-8 py-4 border border-rose-200 text-rose-600 font-sans font-normal rounded-md hover:bg-rose-50 transition duration-300 ease-in-out flex items-center justify-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                  Watch Our Story
+                </button>
+              </div>
+            </div>
+            <div className="relative h-96 md:h-[550px] rounded-md overflow-hidden shadow-xl">
+              <Image
+                src="/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp"
+                alt="A handcrafted memory bear made from cherished clothing"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="transition duration-700 hover:scale-105"
+                priority />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <p className="text-sm font-sans italic opacity-90">
+                  "This bear holds the essence of my mother's favorite cardigan — I feel her warmth every time I hold it."
+                </p>
+              </div>
+            </div>
+
+            <section className="py-1 mb-10 text-red-700 w-full">
+              <div className="container absolute mx-auto px-4">
+                <div className="flex flex-wrap justify-between items-center">
+                  <div className="w-1/2 sm:w-1/5 flex flex-col items-center text-center mb-6 sm:mb-0">
+                    <svg className="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="4" y="6" width="16" height="12" rx="2" strokeWidth="1.5" />
+                      <circle cx="7" cy="18" r="1" strokeWidth="1.5" />
+                      <circle cx="17" cy="18" r="1" strokeWidth="1.5" />
+                    </svg>
+                    <p className="text-sm leading-tight">Gratis fragt<br />over 700 kr.</p>
+                  </div>
+
+                  <div className="w-1/2 sm:w-1/5 flex flex-col items-center text-center mb-6 sm:mb-0">
+                    <svg className="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" strokeWidth="1.5" />
+                      <path d="M12.0096 8.5L12.0096 12.5L14.5 14.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="text-sm leading-tight">30 dages<br />søvngaranti</p>
+                  </div>
+
+                  <div className="w-1/2 sm:w-1/5 flex flex-col items-center text-center mb-6 sm:mb-0">
+                    <svg className="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 11L12 6L17 11M12 6V18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="text-sm leading-tight">250.000+<br />glade kunder</p>
+                  </div>
+
+                  <div className="w-1/2 sm:w-1/5 flex flex-col items-center text-center mb-6 sm:mb-0">
+                    <svg className="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="8" strokeWidth="1.5" />
+                      <path d="M12 8V12L15 13.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="text-sm leading-tight">1-3<br />hverdages levering</p>
+                  </div>
+
+                  <div className="w-full sm:w-1/5 flex flex-col items-center text-center">
+                    <svg className="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" strokeWidth="1.5" />
+                    </svg>
+                    <p className="text-sm leading-tight">Kontakt os<br />alle hverdage</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Emotional Connection Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">More than a keepsake</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">A Tangible Connection to What Matters Most</h2>
+            <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Each MemoryBear is a handcrafted treasure that carries the essence of your most precious memories, offering comfort when you need it most.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="space-y-8">
+              <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-rose-300 transition hover:shadow-md">
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Those We've Lost</h3>
+                <p className="text-gray-600 font-sans">Transform clothing from someone who has passed into a comforting keepsake that helps keep their memory alive. A tangible connection to hold onto when you miss them most, providing comfort during the healing journey.</p>
+              </div>
+
+              <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-blue-300 transition hover:shadow-md">
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Life's Precious Milestones</h3>
+                <p className="text-gray-600 font-sans">Preserve baby's first blanket, graduation gowns, wedding attire, or other milestone garments as a meaningful keepsake that tells your unique story and honors the passage of time.</p>
+              </div>
+
+              <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-purple-300 transition hover:shadow-md">
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Those Far Away</h3>
+                <p className="text-gray-600 font-sans">Create a special gift for long-distance relationships, family members serving overseas, or children away at college—a hug they can hold when you can't be there in person.</p>
+              </div>
+            </div>
+
+            <div className="relative rounded-md overflow-hidden shadow-xl h-[500px]">
+              <Image
+                src="/images/fernanda-greppe-sxXxhuLdnuo-unsplash.jpg"
+                alt="Woman holding a memory bear made from her grandmother's dress"
+                fill
+                style={{ objectFit: 'cover' }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex flex-col items-center justify-end p-10 text-center">
+                <p className="text-xl font-serif text-white italic mb-6 leading-relaxed">"After my grandmother passed, I didn't know what to do with her favorite dresses. Now they've become a beautiful MemoryBear that brings me comfort every day and helps me feel close to her again."</p>
+                <p className="text-white font-sans font-medium">— Sarah K.</p>
+                <div className="mt-6 flex justify-center">
+                  <span className="inline-block w-16 h-0.5 bg-rose-300 rounded-full"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 bg-neutral-50">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Simple process</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Creating Your MemoryBear</h2>
+            <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">A thoughtful journey to transform cherished fabric into a forever keepsake.</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 lg:gap-8">
+            {[
+              {
+                title: "Choose Your Fabrics",
+                description: "Select 2-3 pieces of clothing or textiles that hold special meaning and memories for you.",
+                icon: "/icons/fabric-icon.svg",
+                image: "/images/1.png"
+              },
+              {
+                title: "Design Your Bear",
+                description: "Customize your bear's features, placement of special details, and any personalized elements.",
+                icon: "/icons/design-icon.svg",
+                image: "/images/2.png"
+              },
+              {
+                title: "Handcrafted Creation",
+                description: "Our skilled artisans carefully craft your bear with meticulous attention to detail and respect.",
+                icon: "/icons/craft-icon.svg",
+                image: "/images/3.png"
+              },
+              {
+                title: "Receive & Cherish",
+                description: "Unwrap your handmade MemoryBear, a meaningful keepsake to treasure for generations to come.",
+                icon: "/icons/heart-icon.svg",
+                image: "/images/4.png"
+              }
+            ].map((step, index) => (
+              <div key={index} className="bg-white rounded-md shadow-md overflow-hidden transition duration-300 hover:shadow-lg flex flex-col h-full">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    style={{ objectFit: 'cover' }} />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center mb-4">
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 mr-3 text-sm font-sans font-medium">
+                      {index + 1}
+                    </span>
+                    <h3 className="text-lg font-serif text-gray-800">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-600 font-sans text-sm flex-grow">{step.description}</p>
+                </div>
+                {index < 3 && (
+                  <div className="hidden md:flex absolute top-1/3 -right-3 transform z-10">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13 5L20 12L13 19" stroke="#F9A8D4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/customize"
+              className="px-8 py-4 bg-rose-600 text-white font-sans font-normal rounded-md hover:bg-rose-700 transition duration-300 ease-in-out inline-block shadow-md hover:shadow-lg"
+            >
+              Begin Your MemoryBear Journey
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Examples */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Meaningful creations</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Bears With Stories to Tell</h2>
+            <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Each MemoryBear has its own unique story. Here are a few that have brought comfort and joy to their families.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Grandpa's Flannel Bear",
+                story: "Created from a collection of flannel shirts that were grandpa's daily uniform for 40 years. Now his grandson can hold a piece of him close.",
+                image: "/images/Skærmbillede 2025-03-21 kl. 22.08.10.png"
+              },
+              {
+                title: "Wedding Memory Bear",
+                story: "Made from the lace of a wedding dress and the fabric of a groom's suit to commemorate 50 years of marriage. A testament to enduring love.",
+                image: "/images/sandy-millar-8vaQKYnawHw-unsplash.jpg"
+              },
+              {
+                title: "Baby's First Year Bear",
+                story: "Crafted from baby's coming home outfit, favorite onesie, and the blanket that witnessed countless cuddles. A perfect first birthday gift.",
+                image: "/images/fernanda-greppe-sxXxhuLdnuo-unsplash.jpg"
+              }
+            ].map((bear, index) => (
+              <div key={index} className="bg-white rounded-md overflow-hidden shadow-md hover:shadow-lg transition duration-300 border border-gray-100 flex flex-col h-full">
+                <div className="h-64 relative overflow-hidden">
+                  <Image
+                    src={bear.image}
+                    alt={bear.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transition duration-700 hover:scale-105" />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-serif text-gray-800 mb-3">{bear.title}</h3>
+                  <p className="text-gray-600 font-sans mb-4 flex-grow">{bear.story}</p>
+                  <Link
+                    href={`/stories/${index + 1}`}
+                    className="text-rose-600 font-sans font-medium hover:text-rose-700 transition duration-300 flex items-center mt-2 self-start"
+                  >
+                    Read full story
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-neutral-50">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Customer stories</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Heartfelt Words From Our Customers</h2>
+            <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">The impact of a MemoryBear, in our customers' own words.</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-white rounded-lg shadow-lg p-8 md:p-12 overflow-hidden">
+              {/* Background decorative elements */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-rose-100 rounded-full opacity-20"></div>
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-100 rounded-full opacity-20"></div>
+
+              <div className="relative z-10">
+                <div className="flex flex-col items-center text-center mb-8">
+                  <div className="w-20 h-20 rounded-full overflow-hidden relative mb-4 ring-4 ring-rose-100">
+                    <Image
+                      src={testimonials[testimonialIndex].image}
+                      alt={testimonials[testimonialIndex].name}
+                      fill
+                      style={{ objectFit: 'cover' }} />
+                  </div>
+                  <div>
+                    <p className="font-serif text-xl text-gray-800">{testimonials[testimonialIndex].name}</p>
+                    <p className="text-gray-500 text-sm font-sans">{testimonials[testimonialIndex].location}</p>
+                  </div>
+                </div>
+
+                <div className="flex justify-center mb-6">
+                  {Array(5).fill(0).map((_, i) => (
+                    <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                <div className="mb-8">
+                  <svg className="h-10 w-10 text-rose-200 mx-auto mb-4" fill="currentColor" viewBox="0 0 32 32">
+                    <path d="M10 8c-2.2 0-4 1.8-4 4v10c0 2.2 1.8 4 4 4h12c2.2 0 4-1.8 4-4V12c0-2.2-1.8-4-4-4H10zm0 2h12c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2zm1 1c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm3 0c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm-4 4v6h14v-6H10zm0 8v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2z" />
+                  </svg>
+                  <p className="text-gray-700 font-serif italic text-xl md:text-2xl leading-relaxed">"{testimonials[testimonialIndex].quote}"</p>
+                </div>
+
+                <div className="flex justify-center space-x-2">
+                  {testimonials.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setTestimonialIndex(idx)}
+                      className={`w-3 h-3 rounded-full ${testimonialIndex === idx ? 'bg-rose-500' : 'bg-rose-200'}`}
+                      aria-label={`View testimonial ${idx + 1}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      {/* Call to Action */}
+      {/* <section className="py-24 bg-gradient-to-r from-rose-400 to-rose-600 text-white">
+        <div className="container mx-auto px-6 md:px-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">Begin Your MemoryBear Journey</h2>
+          <p className="text-xl font-light opacity-90 mb-10 max-w-3xl mx-auto font-sans">Transform cherished fabrics into a keepsake that preserves your most precious memories in a form you can hold close for years to come.</p>
+          <Link
+            href="/customize"
+            className="px-10 py-4 bg-white text-rose-600 font-sans font-normal rounded-md hover:bg-gray-100 transition duration-300 ease-in-out inline-block shadow-md hover:shadow-lg"
+          >
+            Start Creating Your MemoryBear
+          </Link>
+        </div>
+      </section> */}
+
+      {/* Fabric Selection Guide */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Expert guidance</span>
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2 mb-6">Choosing Your Fabric With Care</h2>
+              <p className="text-gray-600 font-sans mb-8">Selecting the right materials is an important part of your MemoryBear journey. Here's what works best to create a meaningful keepsake:</p>
+
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center text-rose-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-gray-800 font-serif mb-1">Meaningful Selection</p>
+                    <p className="text-gray-600 font-sans">Choose 2-3 fabric pieces that hold special meaning (clothing, blankets, etc.) with stories and memories attached.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center text-rose-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-gray-800 font-serif mb-1">Durable Fabrics</p>
+                    <p className="text-gray-600 font-sans">Clothing with minimal stretch works best—cotton, flannel, denim, and woven fabrics create the most lasting keepsakes.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center text-rose-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-gray-800 font-serif mb-1">Preserve Special Details</p>
+                    <p className="text-gray-600 font-sans">Let us know about pockets, buttons, embroidery, or monograms you'd like preserved in your bear's design.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center text-rose-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-gray-800 font-serif mb-1">Share Your Story</p>
+                    <p className="text-gray-600 font-sans">Include a note about why these fabrics are meaningful to you—this helps our artisans understand the emotional significance.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Link
+                  href="/fabric-guide"
+                  className="text-rose-600 font-sans font-medium hover:text-rose-700 transition duration-300 flex items-center"
+                >
+                  View our complete fabric guide
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <div className="rounded-md overflow-hidden h-64 shadow-md relative group">
+                <Image
+                  src="/images/1.png"
+                  alt="Clothing fabric for memory bears"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <p className="font-serif text-white">Clothing</p>
+                </div>
+              </div>
+              <div className="rounded-md overflow-hidden h-64 shadow-md relative group">
+                <Image
+                  src="/images/2.png"
+                  alt="Accessories fabric for memory bears"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <p className="font-serif text-white">Accessories</p>
+                </div>
+              </div>
+              <div className="rounded-md overflow-hidden h-64 shadow-md relative group">
+                <Image
+                  src="/images/3.png"
+                  alt="Textiles for memory bears"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <p className="font-serif text-white">Textiles</p>
+                </div>
+              </div>
+              <div className="rounded-md overflow-hidden h-64 shadow-md relative group">
+                <Image
+                  src="/images/4.png"
+                  alt="Baby items for memory bears"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <p className="font-serif text-white">Baby Items</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main></><Footer /></>
   );
 }
