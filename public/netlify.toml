@@ -10,7 +10,9 @@
   NETLIFY_USE_NEXT = "true"
   NEXT_TELEMETRY_DISABLED = "1"
 
+# For Next.js, we want to let the framework handle routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/nextjs-server"
   status = 200
+  force = true
