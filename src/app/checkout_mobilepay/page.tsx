@@ -169,7 +169,7 @@ const VippsMobilePayCheckout: React.FC<VippsMobilePayCheckoutProps> = ({ cart, c
       };
 
       // Call your Django backend to create a checkout session
-      const response = await axios.post('/api/checkout/create/', payload);
+      const response = await axios.post('/checkout_mobilepay/create', payload);
       
       if (response.data && response.data.token) {
         setCheckoutSession(response.data);
@@ -265,7 +265,7 @@ const VippsMobilePayCheckout: React.FC<VippsMobilePayCheckoutProps> = ({ cart, c
   // Get the payment status
   const getPaymentStatus = async (reference: string) => {
     try {
-      const response = await axios.get(`/api/checkout/payment/${reference}/`);
+      const response = await axios.get(`/checkout_mobilepay/payment/${reference}`);
       return response.data.state;
     } catch (err) {
       console.error("Error getting payment status:", err);
