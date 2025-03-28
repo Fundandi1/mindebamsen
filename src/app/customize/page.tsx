@@ -47,25 +47,25 @@ export default function ProductCustomizePage() {
   // Fabric options
   const fabricOptions = [
     { 
-      src: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp", 
+      src: "/images/1.jpg", 
       alt: "Bear with 1 type of fabric",
       text: "1 type of fabric",
       price: "499DKK"
     },
     { 
-      src: "/images/fernanda-greppe-sxXxhuLdnuo-unsplash.jpg", 
+      src: "/images/1.jpg", 
       alt: "Bear with 2 types of fabric",
       text: "2 types of fabric",
       price: "599DKK"
     },
     { 
-      src: "/images/sandy-millar-8vaQKYnawHw-unsplash.jpg", 
+      src: "/images/1.jpg", 
       alt: "Bear with 3 types of fabric",
       text: "3 types of fabric",
       price: "699DKK"
     },
     { 
-      src: "/images/Skærmbillede 2025-03-21 kl. 22.08.10.png", 
+      src: "/images/1.jpg", 
       alt: "Bear with 4 types of fabric",
       text: "4 types of fabric",
       price: "799DKK"
@@ -168,7 +168,7 @@ export default function ProductCustomizePage() {
                     } active:scale-95 transition-all duration-200`}
                   >
                     <Image 
-                      src="/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp"
+                      src="/images/6.avif"
                       alt="Teddy bear vest"
                       fill
                       style={{ objectFit: 'cover' }}

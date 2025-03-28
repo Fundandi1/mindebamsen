@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  output: 'export',
   images: {
     unoptimized: true,
     domains: ['localhost'],
   },
-  // Add any other config options you need
+  // Ensure the _redirects file is copied to the out directory
+  async redirects() {
+    return [];
+  },
 };
 
 export default nextConfig;

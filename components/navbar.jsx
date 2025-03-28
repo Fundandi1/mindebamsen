@@ -60,63 +60,50 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation - Dropdown style */}
-            <nav className="hidden md:flex items-center space-x-1">
-              <div className="group relative px-3 py-2">
-                <Link href="/products" className="font-medium text-gray-800 hover:text-rose-600 flex items-center">
-                  Products
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+{/* Desktop Navigation - Simple link style */}
+<nav className="hidden md:flex items-center space-x-1">
+              <div className="px-3 py-2">
+                <Link href="/customize" className="font-medium text-gray-800 hover:text-rose-600">
+                  Skab din Mindebamse
                 </Link>
-                <div className="absolute left-0 top-full bg-white shadow-md rounded-b-md p-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <Link href="/products/category1" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Category 1
-                  </Link>
-                  <Link href="/products/category2" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Category 2
-                  </Link>
-                </div>
               </div>
-              
-              <div className="group relative px-3 py-2">
-                <Link href="/customize" className="font-medium text-gray-800 hover:text-rose-600 flex items-center">
-                  Customize
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </Link>
-                <div className="absolute left-0 top-full bg-white shadow-md rounded-b-md p-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <Link href="/customize/option1" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Option 1
-                  </Link>
-                  <Link href="/customize/option2" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Option 2
-                  </Link>
-                </div>
-              </div>
-              
-              <div className="group relative px-3 py-2">
-                <Link href="/accessories" className="font-medium text-gray-800 hover:text-rose-600 flex items-center">
-                  Accessories
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </Link>
-                <div className="absolute left-0 top-full bg-white shadow-md rounded-b-md p-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <Link href="/accessories/item1" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Item 1
-                  </Link>
-                  <Link href="/accessories/item2" className="block py-2 px-3 text-gray-700 hover:bg-gray-50 hover:text-rose-600 rounded">
-                    Item 2
-                  </Link>
-                </div>
-              </div>
-              
-              <Link href="/help" className="px-3 py-2 font-medium text-gray-800 hover:text-rose-600">
-                Help
-              </Link>
-            </nav>
+  
+  <div className="px-3 py-2">
+    <button 
+      onClick={() => {
+        const pageHeight = document.body.scrollHeight;
+        window.scrollTo({ top: pageHeight * 0.35, behavior: 'smooth' });
+      }}
+      className="font-medium text-gray-800 hover:text-rose-600 cursor-pointer"
+    >
+      Om Mindebamsen
+    </button>
+  </div>
+  
+  <div className="px-3 py-2">
+    <button 
+      onClick={() => {
+        const pageHeight = document.body.scrollHeight;
+        window.scrollTo({ top: pageHeight * 0.79, behavior: 'smooth' });
+      }}
+      className="font-medium text-gray-800 hover:text-rose-600 cursor-pointer"
+    >
+      FAQ
+    </button>
+  </div>
+  
+  <div className="px-3 py-2">
+    <button 
+      onClick={() => {
+        const pageHeight = document.body.scrollHeight;
+        window.scrollTo({ top: pageHeight, behavior: 'smooth' });
+      }}
+      className="font-medium text-gray-800 hover:text-rose-600 cursor-pointer"
+    >
+      Kontakt
+    </button>
+  </div>
+</nav>
 
             {/* Shopping cart and search */}
             <div className="flex items-center">

@@ -17,7 +17,7 @@ const Footer = () => {
                 height={40} 
               />
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               Curating exceptional memory bears 
               from cherished clothing worldwide.
             </p>
@@ -28,22 +28,22 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-6">Services</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/custom-bears" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/custom-bears" className="text-white hover:text-white transition-colors">
                   Custom Bears
                 </Link>
               </li>
               <li>
-                <Link href="/memory-collection" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/memory-collection" className="text-white hover:text-white transition-colors">
                   Memory Collection
                 </Link>
               </li>
               <li>
-                <Link href="/personalization" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/personalization" className="text-white hover:text-white transition-colors">
                   Personalization
                 </Link>
               </li>
               <li>
-                <Link href="/restoration" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/restoration" className="text-white hover:text-white transition-colors">
                   Restoration
                 </Link>
               </li>
@@ -55,22 +55,22 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-6">About</h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/our-story" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/our-story" className="text-white hover:text-white transition-colors">
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="/press" className="text-gray-400 hover:text-white transition-colors">
-                  Press
+                <Link href="/betingelser" className="text-white hover:text-white transition-colors">
+                  Betingelser
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/careers" className="text-white hover:text-white transition-colors">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact" className="text-white hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -80,7 +80,7 @@ const Footer = () => {
           {/* Column 4: Newsletter */}
           <div>
             <h3 className="text-lg font-medium mb-6">Newsletter</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <p className="text-white text-sm mb-4">
               Subscribe to receive curated collections
               and exclusive artwork releases.
             </p>
@@ -89,7 +89,7 @@ const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Your email address" 
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-4 py-2 bg-white border border-white text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
                 />
               </div>
               <button 
@@ -104,7 +104,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-500 text-sm">
+          <p className="text-white text-sm">
             © {new Date().getFullYear()} MemoryBear. All rights reserved.
           </p>
         </div>

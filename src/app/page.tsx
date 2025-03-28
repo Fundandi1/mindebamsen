@@ -31,24 +31,24 @@ export default function Home() {
   const testimonials = [
     { 
       name: "Michael R.", 
-      location: "Boston, MA",
-      quote: "After my wife passed, I had her favorite cardigan made into a MemoryBear for our daughter. It's become her most treasured possession and helps keep her mother's memory alive in the most beautiful way.",
-      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
-      rating: 5
-    },
-    { 
-      name: "Alicia T.", 
-      location: "Portland, OR",
-      quote: "I sent in my son's baby clothes that I couldn't bear to part with. Now instead of sitting in a box, they're a beautiful keepsake he can actually enjoy. The craftsmanship is exceptional and truly honors the memories.",
-      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
-      rating: 5
-    },
-    { 
-      name: "David K.", 
-      location: "Minneapolis, MN",
-      quote: "Our daughter is away at college and was feeling homesick. We surprised her with a MemoryBear made from her childhood blanket and her dad's old t-shirts. She said it feels like getting a hug from home every day.",
-      image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
-      rating: 5
+    location: "Boston, MA",
+    quote: "Efter min kone gik bort, fik jeg hendes yndlingscardigan lavet til en MemoryBear til vores datter. Det er blevet hendes mest værdsatte ejendel og hjælper med at holde hendes mors minde i live på den smukkeste måde.",
+    image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+    rating: 5
+  },
+  { 
+    name: "Alicia T.", 
+    location: "Portland, OR",
+    quote: "Jeg sendte min søns babytøj ind, som jeg ikke kunne nænne at skille mig af med. Nu i stedet for at ligge i en kasse, er de et smukt minde, han faktisk kan nyde. Håndværket er exceptionelt og ærer virkelig minderne.",
+    image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+    rating: 5
+  },
+  { 
+    name: "David K.", 
+    location: "Minneapolis, MN",
+    quote: "Vores datter er på college og følte sig hjemvé. Vi overraskede hende med en MemoryBear lavet af hendes barndomstæppe og hendes fars gamle t-shirts. Hun sagde, det føles som at få et kram hjemmefra hver dag.",
+    image: "/images/vtb-24736-15inchbuddyredpanda_2_sq_11022022.webp",
+    rating: 5
     }
   ];
   
@@ -114,19 +114,19 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12 relative z-10 py-20">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="flex flex-col space-y-8">
-              <span className="text-rose-600 font-light tracking-wider text-sm uppercase font-sans">Handcrafted with love</span>
+              <span className="text-rose-600 font-light tracking-wider text-sm uppercase font-sans">Håndlavet med passion</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-gray-800 leading-tight">
                 <span className="text-rose-600 italic">Minder</span> Du Kan <span className="block">Holde For Evigt</span>
               </h1>
               <p className="text-lg text-gray-600 font-light font-sans leading-relaxed">
-                Transform cherished clothing into a custom teddy bear that keeps your loved ones close. Each MemoryBear is handcrafted with care, using pieces of meaningful fabric to create a keepsake that provides comfort when you need it most.
+              Forvandl kært tøj til en speciallavet teddybjørn, der holder dine kære tæt på. Hver MemoryBear er håndlavet med omhu, ved hjælp af stykker af meningsfuldt stof til at skabe et minde, der giver trøst, når du har mest brug for det.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link
                   href="/customize"
                   className="px-8 py-4 bg-red-800 text-white font-sans font-normal rounded-md hover:bg-rose-700 transition duration-300 ease-in-out text-center shadow-md hover:shadow-lg"
                 >
-                  Create Your MemoryBear
+                  Skab Din Mindebamse
                 </Link>
                 <button
                   onClick={() => setIsVideoPlaying(true)}
@@ -135,7 +135,7 @@ export default function Home() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                   </svg>
-                  Watch Our Story
+                  Se Vores Historie
                 </button>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <p className="text-sm font-sans italic opacity-90">
-                  "This bear holds the essence of my mother's favorite cardigan — I feel her warmth every time I hold it."
+                "Denne bjørn indeholder essensen af min mors yndlingscardigan — jeg føler hendes varme hver gang jeg holder den."
                 </p>
               </div>
             </div>
@@ -204,42 +204,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Emotional Connection Section */}
-      <section className="py-24 bg-white">
+{/* Emotional Connection Section */}
+<section className="py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">More than a keepsake</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">A Tangible Connection to What Matters Most</h2>
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Mere end et minde</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">En Håndgribelig Forbindelse til Det, Der Betyder Mest</h2>
             <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Each MemoryBear is a handcrafted treasure that carries the essence of your most precious memories, offering comfort when you need it most.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Hver MemoryBear er en håndlavet skat, der bærer essensen af dine mest dyrebare minder og tilbyder trøst, når du har mest brug for det.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-8">
               <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-rose-300 transition hover:shadow-md">
-                <h3 className="text-xl font-serif text-gray-800 mb-3">For Those We've Lost</h3>
-                <p className="text-gray-600 font-sans">Transform clothing from someone who has passed into a comforting keepsake that helps keep their memory alive. A tangible connection to hold onto when you miss them most, providing comfort during the healing journey.</p>
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Dem Vi Har Mistet</h3>
+                <p className="text-gray-600 font-sans">Forvandl tøj fra én, der er gået bort, til et trøstende minde, der hjælper med at holde deres minde i live. En håndgribelig forbindelse at holde fast i, når du savner dem mest, som giver trøst under helingsrejsen.</p>
               </div>
 
               <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-blue-300 transition hover:shadow-md">
-                <h3 className="text-xl font-serif text-gray-800 mb-3">For Life's Precious Milestones</h3>
-                <p className="text-gray-600 font-sans">Preserve baby's first blanket, graduation gowns, wedding attire, or other milestone garments as a meaningful keepsake that tells your unique story and honors the passage of time.</p>
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Livets Dyrebare Milepæle</h3>
+                <p className="text-gray-600 font-sans">Bevar babys første tæppe, studenterkjoler, bryllupstøj eller andre milepælsbeklædninger som et meningsfuldt minde, der fortæller din unikke historie og ærer tidens gang.</p>
               </div>
 
               <div className="bg-neutral-50 p-8 rounded-md border-l-4 border-purple-300 transition hover:shadow-md">
-                <h3 className="text-xl font-serif text-gray-800 mb-3">For Those Far Away</h3>
-                <p className="text-gray-600 font-sans">Create a special gift for long-distance relationships, family members serving overseas, or children away at college—a hug they can hold when you can't be there in person.</p>
+                <h3 className="text-xl font-serif text-gray-800 mb-3">For Dem Langt Væk</h3>
+                <p className="text-gray-600 font-sans">Skab en særlig gave til forhold på distance, familiemedlemmer der tjener i udlandet, eller børn der er på kollegium—et kram de kan holde, når du ikke kan være der personligt.</p>
               </div>
             </div>
 
             <div className="relative rounded-md overflow-hidden shadow-xl h-[500px]">
               <Image
                 src="/images/fernanda-greppe-sxXxhuLdnuo-unsplash.jpg"
-                alt="Woman holding a memory bear made from her grandmother's dress"
+                alt="Kvinde der holder en mindebamse lavet af hendes bedstemors kjole"
                 fill
                 style={{ objectFit: 'cover' }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex flex-col items-center justify-end p-10 text-center">
-                <p className="text-xl font-serif text-white italic mb-6 leading-relaxed">"After my grandmother passed, I didn't know what to do with her favorite dresses. Now they've become a beautiful MemoryBear that brings me comfort every day and helps me feel close to her again."</p>
+                <p className="text-xl font-serif text-white italic mb-6 leading-relaxed">"Efter min bedstemor gik bort, vidste jeg ikke, hvad jeg skulle gøre med hendes yndlingskjoler. Nu er de blevet til en smuk MemoryBear, der giver mig trøst hver dag og hjælper mig med at føle mig tæt på hende igen."</p>
                 <p className="text-white font-sans font-medium">— Sarah K.</p>
                 <div className="mt-6 flex justify-center">
                   <span className="inline-block w-16 h-0.5 bg-rose-300 rounded-full"></span>
@@ -250,39 +250,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-24 bg-neutral-50">
+{/* How It Works Section */}
+<section className="py-24 bg-neutral-50">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Simple process</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Creating Your MemoryBear</h2>
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Enkel proces</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Sådan Skaber Du Din MemoryBear</h2>
             <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">A thoughtful journey to transform cherished fabric into a forever keepsake.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">En omtænksom rejse for at forvandle kært stof til et evigt minde.</p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-6 lg:gap-8">
             {[
               {
-                title: "Choose Your Fabrics",
-                description: "Select 2-3 pieces of clothing or textiles that hold special meaning and memories for you.",
+                title: "Vælg Dine Stoffer",
+                description: "Vælg 2-3 stykker tøj eller tekstiler, der har særlig betydning og minder for dig.",
                 icon: "/icons/fabric-icon.svg",
                 image: "/images/1.png"
               },
               {
-                title: "Design Your Bear",
-                description: "Customize your bear's features, placement of special details, and any personalized elements.",
+                title: "Design Din Bamse",
+                description: "Tilpas din bamses træk, placering af særlige detaljer og eventuelle personlige elementer.",
                 icon: "/icons/design-icon.svg",
                 image: "/images/2.png"
               },
               {
-                title: "Handcrafted Creation",
-                description: "Our skilled artisans carefully craft your bear with meticulous attention to detail and respect.",
+                title: "Håndlavet Kreation",
+                description: "Vores dygtige kunsthåndværkere fremstiller omhyggeligt din bamse med minutiøs opmærksomhed på detaljer og respekt.",
                 icon: "/icons/craft-icon.svg",
                 image: "/images/3.png"
               },
               {
-                title: "Receive & Cherish",
-                description: "Unwrap your handmade MemoryBear, a meaningful keepsake to treasure for generations to come.",
+                title: "Modtag & Værdsæt",
+                description: "Pak din håndlavede MemoryBear ud, et meningsfuldt minde at værdsætte for generationer fremover.",
                 icon: "/icons/heart-icon.svg",
                 image: "/images/4.png"
               }
@@ -320,37 +320,37 @@ export default function Home() {
               href="/customize"
               className="px-8 py-4 bg-rose-600 text-white font-sans font-normal rounded-md hover:bg-rose-700 transition duration-300 ease-in-out inline-block shadow-md hover:shadow-lg"
             >
-              Begin Your MemoryBear Journey
+              Skab Din Egen Mindebamse
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Featured Examples */}
-      <section className="py-24 bg-white">
+{/* Featured Examples */}
+<section className="py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Meaningful creations</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Bears With Stories to Tell</h2>
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Meningsfulde kreationer</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Bamser Med Historier At Fortælle</h2>
             <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Each MemoryBear has its own unique story. Here are a few that have brought comfort and joy to their families.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Hver MemoryBear har sin egen unikke historie. Her er nogle få, som har bragt trøst og glæde til deres familier.</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Grandpa's Flannel Bear",
-                story: "Created from a collection of flannel shirts that were grandpa's daily uniform for 40 years. Now his grandson can hold a piece of him close.",
+                title: "Bedstefars Flannel Bamse",
+                story: "Skabt fra en samling af flanelskjorter, der var bedstefars daglige uniform i 40 år. Nu kan hans barnebarn holde en del af ham tæt på.",
                 image: "/images/Skærmbillede 2025-03-21 kl. 22.08.10.png"
               },
               {
-                title: "Wedding Memory Bear",
-                story: "Made from the lace of a wedding dress and the fabric of a groom's suit to commemorate 50 years of marriage. A testament to enduring love.",
+                title: "Bryllups Mindebamse",
+                story: "Lavet af kniplingen fra en brudekjole og stoffet fra en brudgoms jakkesæt for at mindes 50 års ægteskab. Et vidnesbyrd om varig kærlighed.",
                 image: "/images/sandy-millar-8vaQKYnawHw-unsplash.jpg"
               },
               {
-                title: "Baby's First Year Bear",
-                story: "Crafted from baby's coming home outfit, favorite onesie, and the blanket that witnessed countless cuddles. A perfect first birthday gift.",
+                title: "Babys Første År Bamse",
+                story: "Fremstillet af babys hjemkomsttøj, yndlings-onesie og tæppet, der var vidne til utallige kram. En perfekt gave til den første fødselsdag.",
                 image: "/images/fernanda-greppe-sxXxhuLdnuo-unsplash.jpg"
               }
             ].map((bear, index) => (
@@ -370,7 +370,7 @@ export default function Home() {
                     href={`/stories/${index + 1}`}
                     className="text-rose-600 font-sans font-medium hover:text-rose-700 transition duration-300 flex items-center mt-2 self-start"
                   >
-                    Read full story
+                    Læs hele historien
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
@@ -382,14 +382,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-neutral-50">
+{/* Testimonials */}
+<section className="py-24 bg-neutral-50">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Customer stories</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Heartfelt Words From Our Customers</h2>
+            <span className="text-rose-600 font-sans text-sm tracking-wider uppercase">Kundernes historier</span>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-gray-800 mt-2">Oprigtige Ord Fra Vores Kunder</h2>
             <div className="w-20 h-1 bg-rose-200 mx-auto mt-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">The impact of a MemoryBear, in our customers' own words.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 font-sans">Betydningen af en MemoryBear, med vores kunders egne ord.</p>
           </div>
 
           <div className="max-w-4xl mx-auto">
