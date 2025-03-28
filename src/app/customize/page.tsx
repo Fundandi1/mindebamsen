@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Playfair_Display, Lato } from 'next/font/google';
+import { useRouter } from 'next/navigation';
 import Navbar from '../../../components/navbar';
 
 // Initialize fonts
@@ -19,6 +20,7 @@ const lato = Lato({
 });
 
 export default function ProductCustomizePage() {
+  const router = useRouter();
   const [selectedFabric, setSelectedFabric] = useState(0);
   const [selectedVest, setSelectedVest] = useState(false);
   const [selectedFace, setSelectedFace] = useState(0);
@@ -40,8 +42,45 @@ export default function ProductCustomizePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
+    
+    // Collect all product data
+    const productData = {
+      // Product selections
+      fabricOption: fabricOptions[selectedFabric],
+      vestSelected: selectedVest,
+      faceOption: faceOptions[selectedFace],
+      
+      // Form inputs for fabric descriptions
+      fabricDescriptions: formData,
+      
+      // Price information
+      basePrice,
+      vestPrice,
+      totalPrice,
+
+      // Create a formatted cart for checkout
+      cart: [
+        {
+          name: `Memory Bear - ${fabricOptions[selectedFabric].text}`,
+          price: basePrice,
+          quantity: 1,
+          description: `Memory bear with ${fabricOptions[selectedFabric].text}`
+        },
+        // Add vest as a separate item if selected
+        ...(selectedVest ? [{
+          name: "Memory Bear Vest",
+          price: vestPrice,
+          quantity: 1,
+          description: "Vest accessory for memory bear"
+        }] : [])
+      ]
+    };
+    
+    // Save to localStorage for the checkout page to access
+    localStorage.setItem('memoryBearOrder', JSON.stringify(productData));
+    
+    // Navigate to checkout page
+    router.push('/checkout_mobilepay');
   };
 
   // Fabric options
@@ -125,6 +164,7 @@ export default function ProductCustomizePage() {
                   {fabricOptions.map((option, index) => (
                     <div key={index} className="flex flex-col">
                       <button
+                        type="button"
                         onClick={() => setSelectedFabric(index)}
                         className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all transform ${
                           selectedFabric === index 
@@ -160,6 +200,7 @@ export default function ProductCustomizePage() {
                 <h2 className="font-serif text-xl text-gray-800 mb-4">Optional Accessories</h2>
                 <div className="flex justify-center">
                   <button
+                    type="button"
                     onClick={() => setSelectedVest(!selectedVest)}
                     className={`relative w-full max-w-xs aspect-square rounded-md overflow-hidden border-2 transition-all transform ${
                       selectedVest 
@@ -195,6 +236,7 @@ export default function ProductCustomizePage() {
                   {faceOptions.map((option, index) => (
                     <div key={index} className="flex flex-col">
                       <button
+                        type="button"
                         onClick={() => setSelectedFace(index)}
                         className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all transform ${
                           selectedFace === index 
@@ -376,12 +418,6 @@ export default function ProductCustomizePage() {
                   <button
                     type="submit"
                     className="w-full py-4 bg-rose-600 text-white font-sans font-normal rounded-md hover:bg-rose-700 transition duration-300 ease-in-out shadow-md hover:shadow-lg"
-                    onClick={() => {
-                      // Save form data to local storage
-                      localStorage.setItem('formData', JSON.stringify(formData));
-                      // Navigate to checkout using Next.js routing
-                      window.location.href = '/checkout';
-                    }}
                   >
                     Continue to Checkout
                   </button>
